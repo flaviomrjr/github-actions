@@ -1,6 +1,7 @@
 name: Functions
 
-on: push
+on:
+  - push
 
 jobs:
   functions:
