@@ -1,0 +1,14 @@
+name: Functions
+
+on: push
+
+jobs:
+  functions:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: dump
+        run: |
+          echo ${{ contains( 'hello,' '11' ) }}
+          echo ${{ stratWith( 'hello,' 'he' ) }}
+          echo ${{ endWith( 'hello,' 'lo' ) }}
+          echo ${{ format( 'Hello, {0} {1} {2}', 'World', '!', '!') }}
