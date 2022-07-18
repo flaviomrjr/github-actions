@@ -2,9 +2,11 @@ name: Actions Workflow
 
 on: 
   # push:
-  schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0/6 * * * *"
+  # schedule:
+  #  - cron: "0/5 * * * *"
+  #  - cron: "0/6 * * * *"
+  repository_dispatch:
+    types: [build]
   pull_request:
     types: [closed, assigned, opened, reopened]
 
@@ -14,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Payload
+        run: echo ${{ github.event.client_payload.env }}
       - name: List Files
         run: | 
           pwd
