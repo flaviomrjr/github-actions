@@ -2,6 +2,7 @@ name: Functions
 
 on:
   - push
+  - pull_request
 
 jobs:
   functions:
@@ -13,3 +14,9 @@ jobs:
           echo ${{ startsWith( 'hello', 'he' ) }}
           echo ${{ endsWith( 'hello', 'lo' ) }}
           echo ${{ format( 'Hello {0} {1} {2}', 'World', '!', '!') }}
+  condition:
+    runs-on: ubuntu-22.04
+    if: github.event_name == "push"
+    steps:
+      - name: Print
+        run: echo "Flavio"
