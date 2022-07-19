@@ -5,10 +5,21 @@ on: push
 jobs:
   node-docker:
     runs-on: ubuntu-22.04
-    container: 
-      image: node:13.5.0-alpine3.10
+    #container: 
+    services:
+      app:
+        image: alialaa17/node-api
+        ports:
+          - 3001:3000
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
     steps:
       - name: Log node version
         run: |
           node -v
           cat /etc/os-release
+      - name: Get Users
+        run: curl http://localhost:3001/api/users
+
