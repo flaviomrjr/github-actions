@@ -1,0 +1,21 @@
+name: Functions
+
+on:
+  - pull_request
+
+jobs:
+  functions:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: functions
+        run: |
+          echo ${{ contains( 'hello', '11' ) }}
+          echo ${{ startsWith( 'hello', 'he' ) }}
+          echo ${{ endsWith( 'hello', 'lo' ) }}
+          echo ${{ format( 'Hello {0} {1} {2}', 'World', '!', '!') }}
+  condition:
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push'
+    steps:
+      - name: Print
+        run: echo "Flavio"
